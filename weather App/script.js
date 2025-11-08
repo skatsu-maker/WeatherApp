@@ -1,8 +1,8 @@
 // Selecting HTML elements
-const cityForm = document.getElementById('city-form');
-const cityInput = document.getElementById('city-input');
+const locationForm = document.getElementById('location-form');
+const locationInput = document.getElementById('location-input');
 const weatherContainer = document.getElementById('weather-container');
-const cityElement = document.getElementById('city');
+const locationElement = document.getElementById('location');
 const temperatureElement = document.getElementById('temperature');
 const descriptionElement = document.getElementById('description');
 
@@ -10,20 +10,20 @@ const descriptionElement = document.getElementById('description');
 // Handling form submission
 cityForm.addEventListener('submit', (e) => {
   e.preventDefault();
-  const city = cityInput.value.trim();
-  if (city) {
-    fetchWeatherData(city);
-    cityInput.value = '';
+  const location = locationInput.value.trim();
+  if (location) {
+    fetchWeatherData(location);
+    locationInput.value = '';
   } else {
-    alert('Please enter a city name.');
+    alert('Please enter a location name.');
   }
 });
 
 
 // Function to fetch weather data
-async function fetchWeatherData(city) {
+async function fetchWeatherData(location) {
   const apiKey = '3fc87da47828a9e7200d7cbf7b6ece1e'; 
-  const apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${city}&units=metric&appid=${3fc87da47828a9e7200d7cbf7b6ece1e}`;
+  const apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${location}&units=metric&appid=${3fc87da47828a9e7200d7cbf7b6ece1e}`;
 }
   try {
     const response = await fetch(apiUrl);
@@ -31,7 +31,7 @@ async function fetchWeatherData(city) {
       const data = await response.json();
       displayWeatherData(data);
     } else {
-      throw new Error('City not found');
+      throw new Error('location not found');
     }
   } catch (error) {
     alert(error.message);
@@ -41,4 +41,5 @@ async function fetchWeatherData(city) {
   // Function to display weather data
 function displayWeatherData(data) {
   const { name, main, weather } = data;
+
 }
